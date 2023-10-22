@@ -1,0 +1,22 @@
+{
+  "name": "ticketswap-bot",
+  "version": "1.0.0",
+  "description": "Dit word onze ticketswap bot!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hermanfransen/ticketswap-bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hermanfransen/ticketswap-bot/issues"
+  },
+  "homepage": "https://github.com/hermanfransen/ticketswap-bot#readme",
+  "dependencies": {
+    "puppeteer": "^21.4.0"
+  }
+}
