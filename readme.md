@@ -1,1 +1,6 @@
-Dit word onze ticketswap bot!
+# Ticketswap Bot
+
+## Installatie
+
+  npm install
+  node bot.js
