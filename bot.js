@@ -14,16 +14,18 @@ const fs = require('fs');
   await page.goto("https://www.ticketswap.nl/");
 
   //SECURITY BUTTON
-
-  for(let i = 0; i < 5; i++) {
-    const button = await page.$('#b');
+  let button = true;
+  debugger;
+  while(button === true) {
+    button = await page.$('#b');
     if (button) {
       await button.click();
       console.log('button was clicked!')
+      await page.waitForTimeout(3000);
     } else {
       console.log('Button with id "b" not found.');
     }
-  }
+  };  
 
   //INLOGGEN 
   const button1 = await page.$('.e13muesf0'); // Vervang '.your-button-class' door de gewenste class
