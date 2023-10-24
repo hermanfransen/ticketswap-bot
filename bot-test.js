@@ -28,7 +28,7 @@ const fs = require('fs');
     if (button.length > 0) {
       await button[0].click();
       console.log('Button was clicked!');
-      await page.waitForTimeout(3000);
+      await page.waitForTimeout(2000);
     } else {
       console.log('Log in Button not found.');
     }
@@ -40,26 +40,60 @@ const fs = require('fs');
       if (button2.length > 0) {
         await button2[0].click();
         console.log('Button2 was clicked!');
-        await page.waitForTimeout(3000);
+        await page.waitForTimeout(2000);
       } else {
         console.log('Button2 not found.');
       }
         await page.screenshot({ path: "screenshot.png" });
         console.log('Screenshot was made!')
-        debugger;
+        
       //SIGN UP
 
       const button3 = await page.$x("//a[contains(., 'sign up')]");
       if (button3.length > 0) {
         await button3[0].click();
         console.log('Button3 was clicked!');
-        await page.waitForTimeout(3000);
+        await page.waitForTimeout(2000);
       } else {
         console.log('Button3 not found.');
       }
         await page.screenshot({ path: "screenshot.png" });
         console.log('Screenshot was made!')
-    
+
+        //TYPE E-MAIL ADRESS
+
+        const inputField = await page.$('#user_email');
+
+        await inputField.type('lorenzovannassauw@gmail.com');
+        await page.waitForTimeout(1500);
+
+        await page.screenshot({ path: "screenshot.png" });
+        console.log('Screenshot was made!')
+
+        //TYPE WACHTWOORD
+        const inputField2 = await page.$('#user_password');
+
+        await inputField2.type('@wachtwoord1111');
+        await page.waitForTimeout(1500);
+
+        await page.screenshot({ path: "screenshot.png" });
+        console.log('Screenshot was made!')
+
+        //ACCOUNT AANMAKEN
+        debugger;
+        await page.waitForSelector('input.button-primary[value="Get started"]');
+        const button4 = await page.$('input.button-primary[value="Get started"]');
+        if (button4) {
+          await button4.click();
+          console.log('Button was clicked!');
+          await page.waitForTimeout(1000);
+        } else {
+          console.log('Button not found.');
+        }
+
+          await page.waitForTimeout(1000);
+          await page.screenshot({ path: "screenshot.png" });
+          console.log('Screenshot was made!')
     // //VOLGENDE BUTTON 
     // const button1 = await page.$('.e13muesf0'); // Vervang '.your-button-class' door de gewenste class
     // if (button1) {
