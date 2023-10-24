@@ -19,17 +19,19 @@ const fs = require('fs');
 
     //Screenshot
     await page.screenshot({ path: "screenshot.png" });
+    const pageSource = await page.content();
+    fs.writeFileSync('pagina.html', pageSource);
 
-    //SECURITY BUTTON
+    //INLOGGEN
     let button = true;
     while(button) {
-      button = await page.$('#b');
+      button = await page.$('.sign-in button-tertiary');
       if (button) {
         await button.click();
         console.log('button was clicked!')
         await page.waitForTimeout(3000);
       } else {
-        console.log('Button with id "b" not found.');
+        console.log('Log in Button not found.');
       }
       await page.screenshot({ path: "screenshot.png" });
     };  
@@ -48,8 +50,7 @@ const fs = require('fs');
     // Voer hier je automatische acties uit
     // Bijvoorbeeld, klik op een knop:
     // await page.click('#myButton'); 
-    const pageSource = await page.content();
-    fs.writeFileSync('pagina.html', pageSource);
+
     // Maak een screenshot van de pagina
    
 
