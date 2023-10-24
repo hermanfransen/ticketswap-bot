@@ -12,7 +12,7 @@ const fs = require('fs');
 
     // Maak een nieuw pagina-object
     const page = await browser.newPage();
-    debugger;
+   
     // Navigeer naar een URL
     await page.goto("https://ifttt.com/");
 
@@ -35,14 +35,27 @@ const fs = require('fs');
       await page.screenshot({ path: "screenshot.png" });
       console.log('Screenshot was made!')
    
-      //CONTINUE WITH GOOGLE
+      //CONTINUE WITH APPLE, FACEBOOK OR GOOGLE
       const button2 = await page.$x("//a[contains(., 'Apple, Google, or Facebook')]");
       if (button2.length > 0) {
         await button2[0].click();
-        console.log('Button was clicked!');
+        console.log('Button2 was clicked!');
         await page.waitForTimeout(3000);
       } else {
-        console.log('Button not found.');
+        console.log('Button2 not found.');
+      }
+        await page.screenshot({ path: "screenshot.png" });
+        console.log('Screenshot was made!')
+        debugger;
+      //SIGN UP
+
+      const button3 = await page.$x("//a[contains(., 'sign up')]");
+      if (button3.length > 0) {
+        await button3[0].click();
+        console.log('Button3 was clicked!');
+        await page.waitForTimeout(3000);
+      } else {
+        console.log('Button3 not found.');
       }
         await page.screenshot({ path: "screenshot.png" });
         console.log('Screenshot was made!')
