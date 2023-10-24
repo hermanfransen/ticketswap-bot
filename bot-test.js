@@ -90,8 +90,7 @@ const fs = require('fs');
         } else {
           console.log('Button not found.');
         }
-
-          await page.waitForTimeout(1000);
+          
           await page.screenshot({ path: "screenshot.png" });
           console.log('Screenshot was made!')
     // //VOLGENDE BUTTON 
