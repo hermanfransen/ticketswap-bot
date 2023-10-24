@@ -3,115 +3,94 @@
 const puppeteer = require("puppeteer");
 const fs = require('fs');
 
+
+async function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 (async () => {
   try {
-    // Start een nieuwe browser-instantie
+     // Start een nieuwe browser-instantie
     const browser = await puppeteer.launch({
       executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe",
+      // Set a real user agent string (replace with an actual user agent string)
+      userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36",
     });
 
     // Maak een nieuw pagina-object
     const page = await browser.newPage();
-   
-    // Navigeer naar een URL
+
+    // Navigeer naar een UR
     await page.goto("https://ifttt.com/");
 
-
-    //Screenshot
+    //Screenshot en PageSource
     await page.screenshot({ path: "screenshot.png" });
     const pageSource = await page.content();
     fs.writeFileSync('pagina.html', pageSource);
     console.log('Screenshot and source code retrieved!')
 
     //INLOGGEN
-    const button = await page.$x("//a[contains(., 'Log in')]");
+    const button = await page.$x("//a[contains(., 'Start today')]");
     if (button.length > 0) {
       await button[0].click();
       console.log('Button was clicked!');
-      await page.waitForTimeout(2000);
+      await delay(2000 + Math.random() * 2000); // Add a random delay between 2 to 4 seconds
     } else {
       console.log('Log in Button not found.');
     }
+    //Sreenshot
+    await page.screenshot({ path: "screenshot.png" });
+    console.log('Screenshot was made!')
+    //SIGN UP
+    const button3 = await page.$x("//a[contains(., 'sign up')]");
+    if (button3.length > 0) {
+      await button3[0].click();
+      console.log('Button3 was clicked!');
+      await delay(2000 + Math.random() * 2000);
+    } else {
+      console.log('Button3 not found.');
+    }
+      //Screenshot
       await page.screenshot({ path: "screenshot.png" });
       console.log('Screenshot was made!')
-   
-      //CONTINUE WITH APPLE, FACEBOOK OR GOOGLE
-      const button2 = await page.$x("//a[contains(., 'Apple, Google, or Facebook')]");
-      if (button2.length > 0) {
-        await button2[0].click();
-        console.log('Button2 was clicked!');
-        await page.waitForTimeout(2000);
-      } else {
-        console.log('Button2 not found.');
-      }
-        await page.screenshot({ path: "screenshot.png" });
-        console.log('Screenshot was made!')
-        
-      //SIGN UP
 
-      const button3 = await page.$x("//a[contains(., 'sign up')]");
-      if (button3.length > 0) {
-        await button3[0].click();
-        console.log('Button3 was clicked!');
-        await page.waitForTimeout(2000);
-      } else {
-        console.log('Button3 not found.');
-      }
-        await page.screenshot({ path: "screenshot.png" });
-        console.log('Screenshot was made!')
+    //TYPE E-MAIL ADRESS
+    const inputField = await page.$('#user_email');
+    if (inputField) {
+      await inputField.type('lorenzovannassauw1@gmail.com');
+      await delay(2500 + Math.random() * 1500);
+    }
+    //Screenshot
+      await page.screenshot({ path: "screenshot.png" });
+      console.log('Screenshot was made!')
 
-        //TYPE E-MAIL ADRESS
+    //TYPE WACHTWOORD
+    const inputField2 = await page.$('#user_password');
+    if (inputField2) {
+      await inputField2.type('@@ww1154kD');
+      await delay(2500 + Math.random() * 1500);
+    }
+    //Screenshot
+      await page.screenshot({ path: "screenshot.png" });
+      console.log('Screenshot was made!')
 
-        const inputField = await page.$('#user_email');
+    debugger;
 
-        await inputField.type('lorenzovannassauw@gmail.com');
-        await page.waitForTimeout(1500);
-
-        await page.screenshot({ path: "screenshot.png" });
-        console.log('Screenshot was made!')
-
-        //TYPE WACHTWOORD
-        const inputField2 = await page.$('#user_password');
-
-        await inputField2.type('@wachtwoord1111');
-        await page.waitForTimeout(1500);
-
-        await page.screenshot({ path: "screenshot.png" });
-        console.log('Screenshot was made!')
-
-        //ACCOUNT AANMAKEN
-        debugger;
-        await page.waitForSelector('input.button-primary[value="Get started"]');
-        const button4 = await page.$('input.button-primary[value="Get started"]');
-        if (button4) {
-          await button4.click();
-          console.log('Button was clicked!');
-          await page.waitForTimeout(1000);
-        } else {
-          console.log('Button not found.');
-        }
-          
-          await page.screenshot({ path: "screenshot.png" });
-          console.log('Screenshot was made!')
-    // //VOLGENDE BUTTON 
-    // const button1 = await page.$('.e13muesf0'); // Vervang '.your-button-class' door de gewenste class
-    // if (button1) {
-    //   await button1.click();
-    // } else {
-    //   console.log('Button1 with the specified class not found.');
-    // }
-    // //Screenshot
-    // await page.screenshot({ path: "screenshot.png" });
-  
-    // Voer hier je automatische acties uit
-    // Bijvoorbeeld, klik op een knop:
-    // await page.click('#myButton'); 
-
-    // Maak een screenshot van de pagina
-   
-
-    // Sluit de browser
-    await browser.close();
+    //GET STARTED
+    await page.waitForSelector('input.button-primary[value="Get started"]');
+    const button4 = await page.$('input.button-primary[value="Get started"]');
+    if (button4) {
+      await button4.click();
+      console.log('Button was clicked!');
+      await delay(1000 + Math.random() * 1000);
+    } else {
+      console.log('Button not found.');
+    }
+    
+    await page.screenshot({ path: "screenshot.png" });
+    console.log('Screenshot was made!');
+    
+   await browser.close();
   } catch (error) {
     console.error('An error occurred:', error);
   }
