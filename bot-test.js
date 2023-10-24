@@ -12,13 +12,16 @@ const fs = require('fs');
 
     // Maak een nieuw pagina-object
     const page = await browser.newPage();
-
+    debugger;
     // Navigeer naar een URL
-    await page.goto("website-url");
+    await page.goto("https://ifttt.com/");
+
+
+    //Screenshot
+    await page.screenshot({ path: "screenshot.png" });
 
     //SECURITY BUTTON
     let button = true;
-    debugger;
     while(button) {
       button = await page.$('#b');
       if (button) {
@@ -39,6 +42,7 @@ const fs = require('fs');
     } else {
       console.log('Button1 with the specified class not found.');
     }
+    //Screenshot
     await page.screenshot({ path: "screenshot.png" });
 
     // Voer hier je automatische acties uit
