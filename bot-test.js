@@ -1,8 +1,5 @@
-
-
 const puppeteer = require("puppeteer");
 const fs = require('fs');
-
 
 async function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -12,6 +9,11 @@ async function delay(ms) {
   try {
      // Start een nieuwe browser-instantie
     const browser = await puppeteer.launch({
+
+      /**
+       * Lorenzo: C:/Program Files/Google/Chrome/Application/chrome.exe
+       * Herman werk Mac: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+       */
       executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe",
       // Set a real user agent string (replace with an actual user agent string)
       userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36",
