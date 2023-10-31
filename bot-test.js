@@ -23,7 +23,7 @@ async function delay(ms) {
     const page = await browser.newPage();
 
     // Navigeer naar een UR
-    await page.goto("https://ifttt.com/");
+    await page.goto("ticketswap");
 
     //Screenshot en PageSource
     await page.screenshot({ path: "screenshot.png" });
