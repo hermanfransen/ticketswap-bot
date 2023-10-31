@@ -28,9 +28,22 @@ async function delay(ms) {
     const pageSource = await page.content();
     fs.writeFileSync('pagina.html', pageSource);
     console.log('Screenshot and source code retrieved!')
+    debugger;
+    // cookies
+    const button0 = await page.$('.c-button small'); 
+    if (button0) { 
+      await button0.click();
+      console.log('Button0 was clicked!');
+      await delay(2000 + Math.random() * 2000);
+    } else {
+      console.log('Button0 not found.');
+    }
+    //Sreenshot
+    await page.screenshot({ path: "screenshot.png" });
+    console.log('Screenshot was made!')
 
-    //INLOGGEN
-    const button = await page.$x("//a[contains(., 'Start today')]");
+    //email invoeren                                          
+    const button = await page.$('#participation-email');
     if (button.length > 0) {
       await button[0].click();
       console.log('Button was clicked!');
@@ -41,6 +54,7 @@ async function delay(ms) {
     //Sreenshot
     await page.screenshot({ path: "screenshot.png" });
     console.log('Screenshot was made!')
+
     //SIGN UP
     const button3 = await page.$x("//a[contains(., 'sign up')]");
     if (button3.length > 0) {
@@ -73,8 +87,6 @@ async function delay(ms) {
     //Screenshot
       await page.screenshot({ path: "screenshot.png" });
       console.log('Screenshot was made!')
-
-    debugger;
 
     //GET STARTED
     await page.waitForSelector('input.button-primary[value="Get started"]');
