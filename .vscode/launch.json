@@ -5,7 +5,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/bot-test.js",
+      "program": "${workspaceFolder}/bot-homey.js",
       "skipFiles": [
         "<node_internals>/**"
       ],
