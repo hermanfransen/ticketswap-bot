@@ -19,6 +19,8 @@ async function delay(ms) {
 
     // Maak een nieuw pagina-object
     const page = await browser.newPage();
+    
+    await page.setViewport({ width: 1200, height: 800 });
 
     // Navigeer naar een UR
     await page.goto("https://www.loogman.nl/wasrad");
@@ -30,13 +32,13 @@ async function delay(ms) {
     console.log('Screenshot and source code retrieved!')
     debugger;
     // cookies
-    const button0 = await page.$('.c-button small'); 
-    if (button0) { 
+    const button0 = await page.$('#js-cookie-consent .c-button.small');
+    if (button0) {
       await button0.click();
-      console.log('Button0 was clicked!');
-      await delay(2000 + Math.random() * 2000);
+      console.log('Button0 (Accepteren) was clicked!');
+      await page.waitForTimeout(2000 + Math.random() * 2000); // Wacht willekeurige tijd tussen 2 en 4 seconden.
     } else {
-      console.log('Button0 not found.');
+      console.log('Button0 (Accepteren) not found.');
     }
     //Sreenshot
     await page.screenshot({ path: "screenshot.png" });
