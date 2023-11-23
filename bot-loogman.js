@@ -30,7 +30,6 @@ async function delay(ms) {
     const pageSource = await page.content();
     fs.writeFileSync('pagina.html', pageSource);
     console.log('Screenshot and source code retrieved!')
-    debugger;
     // cookies
     const button0 = await page.$('#js-cookie-consent .c-button.small');
     if (button0) {
@@ -45,40 +44,42 @@ async function delay(ms) {
     console.log('Screenshot was made!')
 
     //email invoeren                                          
-    const button = await page.$('#participation-email');
-    if (button.length > 0) {
-      await button[0].click();
-      console.log('Button was clicked!');
-      await delay(2000 + Math.random() * 2000); // Add a random delay between 2 to 4 seconds
-    } else {
-      console.log('Log in Button not found.');
+    const inputField1 = await page.$('#participation-email');
+    if (inputField1) {
+      await inputField1.type('lorenzovannassauw@999gmail.com');
+      await delay(2500 + Math.random() * 1500);
     }
     //Sreenshot
     await page.screenshot({ path: "screenshot.png" });
     console.log('Screenshot was made!')
 
-    //SIGN UP
-    const button3 = await page.$x("//a[contains(., 'sign up')]");
-    if (button3.length > 0) {
-      await button3[0].click();
-      console.log('Button3 was clicked!');
-      await delay(2000 + Math.random() * 2000);
+    //DOE MEE
+    const button1 = await page.$('.c-button.c-search-form-button.js-wheel-of-fortune-button');
+    if (button1) {
+      await button1.click();
+      console.log('Button1 was clicked!');
+      await page.waitForTimeout(1000 + Math.random() * 1000);
     } else {
-      console.log('Button3 not found.');
+      console.log('Button1 not found.');
     }
-      //Screenshot
-      await page.screenshot({ path: "screenshot.png" });
-      console.log('Screenshot was made!')
+   //Screenshot
+   await page.screenshot({ path: "screenshot.png" });
+   console.log('Screenshot was made!')
 
+   debugger;
+//////////////////////////////////////////////////////////
     //TYPE E-MAIL ADRESS
-    const inputField = await page.$('#user_email');
-    if (inputField) {
-      await inputField.type('lorenzovannassauw1@gmail.com');
-      await delay(2500 + Math.random() * 1500);
+    const button2 = await page.$('#recaptcha-anchor');
+    if (button2) {
+      await button2.click();
+      console.log('Button2 was clicked!');
+      await page.waitForTimeout(1000 + Math.random() * 1000);
+    } else {
+      console.log('Button1 not found.');
     }
-    //Screenshot
-      await page.screenshot({ path: "screenshot.png" });
-      console.log('Screenshot was made!')
+   //Screenshot
+   await page.screenshot({ path: "screenshot.png" });
+   console.log('Screenshot was made!')
 
     //TYPE WACHTWOORD
     const inputField2 = await page.$('#user_password');
